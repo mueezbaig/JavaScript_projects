@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body{
+            background-color: #1a1a1a; /* Dark gray background */
+        }
+
+        .Clock{
+            position: absolute;
+            color: #66ff66; /* Light green text */
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            font-size: 60px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            letter-spacing: 7px;
+        }
+    </style>
+</head>
+<body>
+    <div id="Digital_clock" class="Clock"></div>
+
+    <script>
+    function showTime(){
+        const date = new Date();
+        let h = date.getHours();
+        let m = date.getMinutes();
+        let s = date.getSeconds();
+        let session = "AM";
+
+        h = (h < 10) ? "0" + h : h;
+        m = (m < 10) ? "0" + m : m;
+        s = (s < 10) ? "0" + s : s;
+
+        if (h >= 12) {
+            session = "PM";
+            h = h % 12 || 12; // Convert to 12-hour format
+        }
+
+        document.getElementById("Digital_clock").innerHTML = h + ":" +  m + ":" + s + " " + session; 
+
+        setTimeout(showTime, 1000);
+    }
+    
+    // Initial call to start the clock
+    showTime();
+    </script>
+</body>
+</html>

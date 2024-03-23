@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo-List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .row {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .input-group {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 140px);
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ced4da;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input[type="button"] {
+            width: 100px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        li {
+            cursor: pointer;
+            border-bottom: 1px solid #ced4da;
+            padding: 10px 0;
+            transition: background-color 0.3s;
+        }
+
+        li:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="row" style="color: #007bff;">To-Do List</h1>
+        <div class="row">
+            <form>
+                <div class="input-group">
+                    <input type="text" placeholder="Add a todo item" id="box">
+                    <input type="button" value="Add" onclick="add_item()">
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+            <ul id="list_item"></ul>
+        </div>
+    </div>
+
+    <script>
+        function add_item(){
+            let item = document.getElementById("box");
+            let list_item = document.getElementById("list_item");
+
+            if(item.value.trim() !== ''){
+                let make_li = document.createElement('li');
+                make_li.appendChild(document.createTextNode(item.value));
+                list_item.appendChild(make_li);
+                item.value="";
+
+                make_li.onclick = function() {
+                    this.parentNode.removeChild(this);
+                }
+            }
+            else{
+                alert("Please add a value to item");
+            }
+        }
+    </script>
+</body>
+</html>
